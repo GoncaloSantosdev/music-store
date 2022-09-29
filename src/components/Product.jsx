@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 // MUI
 import { Box, Button, Card, CardActions, CardContent, CardHeader, CardMedia, IconButton, Typography } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
+const Product = ({ product, addToCart }) => {
+  const onAddToCart = () => {
+    addToCart(product);
+  }
 
-const Product = ({ product }) => {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardHeader title={product.title} subheader={product.brand}/>
@@ -27,7 +30,7 @@ const Product = ({ product }) => {
 
       <CardActions>
         <Box width={1} display='flex' justifyContent='space-between'>
-            <Button>Add to Cart</Button>
+            <Button onClick={onAddToCart}>Add to Cart</Button>
 
             <IconButton aria-label="add to favorites">
             <FavoriteIcon />
