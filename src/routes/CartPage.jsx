@@ -1,12 +1,17 @@
 import React from 'react';
+// React Router
+import { Link } from 'react-router-dom';
+// Context
+import { useShoppingCart } from '../Context/shoppingCartContext';
 // Components
 import CartItem from '../components/CartItem';
 // MUI
 import { Box, Button } from '@mui/material';
 import { Home, Replay } from '@mui/icons-material';
-import { Link } from 'react-router-dom';
 
-const CartPage = ({ shoppingCart, removeFromCart, emptyCart }) => {
+const CartPage = () => {
+  const { shoppingCart, removeFromCart } = useShoppingCart();
+
   return (
     <Box width={1} display='flex' flexDirection='column' alignItems='center' mt={6}>
         {shoppingCart.map((cartItem) => (

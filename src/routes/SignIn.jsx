@@ -1,17 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+// Context
+import { userContext } from '../Context/userContext';
 // MUI
 import { Box, Button, TextField, Typography } from '@mui/material';
 // Data
 import { sampleUserData } from '../assets/data/usersData';
 
-const SignIn = ({ signIn, signOut, user, setUser }) => {
+const SignIn = () => {
+  const { user, signIn, signOut } = useContext(userContext);
+
   const [signInForm, setSignInForm] = useState({
     email: '',
     password: ''
   });
 
   const onSubmit = () => {
-   signIn(sampleUserData);
+    signIn(sampleUserData);
   }
 
   if(user){

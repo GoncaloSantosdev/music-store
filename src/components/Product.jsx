@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
+// Context
+import { shoppingCartContext, useShoppingCart } from '../Context/shoppingCartContext';
 // MUI
 import { Box, Button, Card, CardActions, CardContent, CardHeader, CardMedia, IconButton, Typography } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
-const Product = ({ product, addToCart }) => {
+const Product = ({ product }) => {
+  const { addToCart } = useShoppingCart();
+
   const onAddToCart = () => {
     addToCart(product);
   }

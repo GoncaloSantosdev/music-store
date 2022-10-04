@@ -6,12 +6,12 @@ import Product from '../components/Product';
 // MUI
 import { Box } from '@mui/system';
 
-const Home = ({ user, addToCart }) => {
+const Home = ({ addToCart }) => {
   return (
     <>
       {productsData.map((product) => (
         <Box key={product.id} mt={6} mb={6} flexGrow={1} display='flex' flexDirection='column' alignItems='center'>
-          <Product product={product} addToCart={addToCart}/>
+          <Product product={product}/>
         </Box>
       ))}
     </>
