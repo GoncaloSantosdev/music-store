@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import { Provider } from 'react-redux';
+import store from './redux-state/store';
 // Context
-import UserContextProvider from './Context/userContext';
 import ShoppingCartProvider from './Context/shoppingCartContext';
 // React Router
 import { Routes, Route } from 'react-router-dom';
@@ -19,7 +20,7 @@ import { Box } from '@mui/material';
 function App() {
   return (
     <CustomThemeProvider>
-    <UserContextProvider>
+    <Provider store={store}>
     <ShoppingCartProvider>
       <Box display='flex' flexDirection='column' height='100vh'>
         <Box>
@@ -39,7 +40,7 @@ function App() {
         </Box>
       </Box>
     </ShoppingCartProvider>
-    </UserContextProvider>
+    </Provider>
     </CustomThemeProvider>
   );
 }

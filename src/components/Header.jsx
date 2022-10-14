@@ -1,15 +1,15 @@
 import React, { useContext } from 'react';
-// Context
-import { userContext } from '../Context/userContext';
+// Redux
+import { useSelector } from 'react-redux'
 // MUI
 import { AppBar, Box, Toolbar, Typography, IconButton, Badge, } from '@mui/material';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Link } from 'react-router-dom';
-import { shoppingCartContext, useShoppingCart } from '../Context/shoppingCartContext';
+import { useShoppingCart } from '../Context/shoppingCartContext';
 
 const Header = () => {
-  const { user, signIn, signOut } = useContext(userContext);
+  const user = useSelector((state) => state.user);
 
   const { shoppingCart } = useShoppingCart();
 

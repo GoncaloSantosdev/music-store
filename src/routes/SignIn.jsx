@@ -1,22 +1,28 @@
 import React, { useState, useContext } from 'react';
-// Context
-import { userContext } from '../Context/userContext';
+// Redux
+import { useDispatch, useSelector } from 'react-redux';
 // MUI
 import { Box, Button, TextField, Typography } from '@mui/material';
 // Data
 import { sampleUserData } from '../assets/data/usersData';
 
-const SignIn = () => {
-  const { user, signIn, signOut } = useContext(userContext);
+const SignInPage = () => {
+  const user = useSelector((state) => state.user);
+
+  const dispatch = useDispatch();
 
   const [signInForm, setSignInForm] = useState({
     email: '',
-    password: ''
+    password: '',
   });
 
   const onSubmit = () => {
-    signIn(sampleUserData);
-  }
+    dispatch(signIn(sampleUserData));
+  };
+
+  const handleSignOut = () => {
+    dispatch(signOut());
+  };
 
   if(user){
     return(
@@ -69,4 +75,4 @@ const SignIn = () => {
   )
 }
 
-export default SignIn
+export default SignInPage
