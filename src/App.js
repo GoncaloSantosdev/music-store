@@ -1,47 +1,35 @@
-import React, { useState } from 'react';
 import { Provider } from 'react-redux';
-import store from './redux-state/store';
-// Context
-import ShoppingCartProvider from './Context/shoppingCartContext';
-// React Router
-import { Routes, Route } from 'react-router-dom';
-// Routes
-import Home from './routes/Home';
-import SignIn from './routes/SignIn';
-import CartPage from './routes/CartPage';
-// Components 
-import Header from './components/Header';
-import Footer from './components/Footer';
-// Theme 
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import CartPage from './components/pages/CartPage';
+import HomePage from './components/pages/HomePage';
+import SignInPage from './components/pages/SignInPage';
+import UserRegistrationPage from './components/pages/UserRegistrationPage';
+import ShoppingCartContextProvider from './context/shoppingCartContext';
 import CustomThemeProvider from './CustomThemeProvider';
-// MUI
-import { Box } from '@mui/material';
+import store from './redux-state/store';
+import './resetStyles.css';
 
 function App() {
   return (
-    <CustomThemeProvider>
     <Provider store={store}>
-    <ShoppingCartProvider>
-      <Box display='flex' flexDirection='column' height='100vh'>
-        <Box>
-          <Header />
-        </Box>
-        
-        <Box flexGrow={1}>
-          <Routes>
-            <Route path='/' element={<Home />}/>
-            <Route path='/sign-in' element={<SignIn />} />
-            <Route path='/cart' element={<CartPage />} />
-          </Routes>
-        </Box>
-
-        <Box>
-          <Footer />
-        </Box>
-      </Box>
-    </ShoppingCartProvider>
+      <CustomThemeProvider>
+        <ShoppingCartContextProvider>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/user" element={<SignInPage />} />
+              <Route path="/register-user" element={<UserRegistrationPage />} />
+              <Route
+                path="/cart"
+                element={(
+                  <CartPage />
+                  )}
+              />
+            </Routes>
+          </BrowserRouter>
+        </ShoppingCartContextProvider>
+      </CustomThemeProvider>
     </Provider>
-    </CustomThemeProvider>
   );
 }
 

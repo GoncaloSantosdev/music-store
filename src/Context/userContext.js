@@ -1,11 +1,10 @@
-import { createContext, useReducer } from "react";
+import { createContext, useReducer } from 'react';
 
 const SIGN_IN = 'sign-in';
 const SIGN_OUT = 'sign-out';
 
 export const userContext = createContext();
 
-// Reducer
 const reducer = (state, action) => {
   switch (action.type) {
     case SIGN_IN: {
@@ -21,19 +20,21 @@ const reducer = (state, action) => {
   }
 };
 
-const UserContextProvider = (props) => {
+function UserContextProvider(props) {
   const { children } = props;
   const userInitialState = undefined;
 
   const [user, dispatch] = useReducer(reducer, userInitialState);
+
   const signIn = (userData) => dispatch({ type: SIGN_IN, payload: { userData } });
+
   const signOut = () => dispatch({ type: SIGN_OUT });
-    
-    return(
-      <userContext.Provider value={{ user, signIn, signOut }}>
-        {children}
-      </userContext.Provider>
-      )
+
+  return (
+    <userContext.Provider value={{ user, signIn, signOut }}>
+      {children}
+    </userContext.Provider>
+  );
 }
 
 export default UserContextProvider;
